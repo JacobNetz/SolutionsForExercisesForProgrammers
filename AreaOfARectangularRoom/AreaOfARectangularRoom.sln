@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AreaOfARectangularRoom", "AreaOfARectangularRoom\AreaOfARectangularRoom.csproj", "{30AB8896-2D8A-4255-A1B0-6BEFB1C29E4F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AreaOfARectangularRoom.Tests", "AreaOfARectangularRoom.Tests\AreaOfARectangularRoom.Tests.csproj", "{74E35DCE-17E5-42E2-854A-CA9E7883DED4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{30AB8896-2D8A-4255-A1B0-6BEFB1C29E4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30AB8896-2D8A-4255-A1B0-6BEFB1C29E4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30AB8896-2D8A-4255-A1B0-6BEFB1C29E4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30AB8896-2D8A-4255-A1B0-6BEFB1C29E4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74E35DCE-17E5-42E2-854A-CA9E7883DED4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74E35DCE-17E5-42E2-854A-CA9E7883DED4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74E35DCE-17E5-42E2-854A-CA9E7883DED4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74E35DCE-17E5-42E2-854A-CA9E7883DED4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EF0D852B-548B-4F09-B23A-6FC6A921ADE0}
+	EndGlobalSection
+EndGlobal
