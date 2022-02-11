@@ -3,13 +3,8 @@
 namespace CurrencyConverter;
 public class CurrencyConverter
 {
-    public double ConvertCurrency(double amountFrom, double exchangeRate)
-    {
-        var result = (amountFrom * exchangeRate) / 100;
-        var shiftedResult = result * 100;
-        var ceiling = Math.Ceiling(shiftedResult);
-        return Math.Ceiling(ceiling) != shiftedResult ? ceiling / 100 : result;
-    }
+    private const string BaseURL = "https://openexchangerates.org/api";
+    private const string ExchangeRateLatestURL = $"{BaseURL}/latest.json";
 
     /// <summary>
     /// Gets https://openexchangerates.org App ID from environment variables -
@@ -22,15 +17,25 @@ public class CurrencyConverter
     private string? AppId => Environment.GetEnvironmentVariable("OpenExchangeAppID", EnvironmentVariableTarget.Process)
                              ?? Environment.GetEnvironmentVariable("OpenExchangeAppID", EnvironmentVariableTarget.Machine)
                              ?? Environment.GetEnvironmentVariable("OpenExchangeAppID", EnvironmentVariableTarget.User);
-    private string Url => $"https://openexchangerates.org/api/latest.json?app_id={AppId}";
-    public record USDRate(double USD);
-    public record ExchangeRateInfo(USDRate rates);
+    
+    public record Rates(double USD, double EUR);
+    public record ExchangeRateInfo(Rates Rates);
 
-    public async Task<double> ConvertCurrency(double amount)
+    public double RoundUpToNearestPenny(double originalAmount)
+    {
+        var shiftedResult = originalAmount * 100;
+        var ceiling = Math.Ceiling(shiftedResult);
+        return Math.Ceiling(ceiling) != shiftedResult ? ceiling / 100 : originalAmount;
+    }
+
+    public async Task<(double exchangeRate, double dollars)> ConvertCurrency(double amount)
     {
         using var httpClient = new HttpClient();
-        var jsonTask = httpClient.GetFromJsonAsync(Url, typeof(ExchangeRateInfo));
-        var eri = await jsonTask as ExchangeRateInfo;
-        return eri.rates.USD;
+        httpClient.DefaultRequestHeaders.Add("Authorization", $"Token {AppId}");
+        var jsonTask = httpClient.GetFromJsonAsync(ExchangeRateLatestURL, typeof(ExchangeRateInfo));
+        if(await jsonTask is not ExchangeRateInfo eri)
+            return (0, 0);
+        var total = (1 / eri.Rates.EUR) * amount;
+        return (eri.Rates.EUR, RoundUpToNearestPenny(total));
     }
 }

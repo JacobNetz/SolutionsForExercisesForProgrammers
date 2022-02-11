@@ -4,41 +4,35 @@ namespace CurrencyConverter.Tests;
 
 public class CurrencyConverterTests
 {
-    /*[Fact]
-    public void ConvertCurrency_WithValidAmountAndExchangeRate_ShouldReturnCorrectAmount()
+    [Theory]
+    [InlineData(92.569, 92.57)]
+    [InlineData(92.57, 92.57)]
+    [InlineData(92.571, 92.58)]
+    [InlineData(.999, 1)]
+    [InlineData(.9909, 1)]
+    [InlineData(1.01, 1.01)]
+    [InlineData(0.1, .1)]
+    [InlineData(0.000001, .01)]
+    public void RoundUpToNearestPenny_WithFractionalPenny_ShouldRoundUp(double originalValue, double expectedValue)
     {
         var converter = new CurrencyConverter();
 
-        var result = converter.ConvertCurrency(50, 150);
+        var value = converter.RoundUpToNearestPenny(originalValue);
 
-        Assert.Equal(75, result);
+        Assert.Equal(expectedValue, value);
     }
 
-    [Fact]
-    public void ConvertCurrency_WithFractionalResult_ShouldRoundUpToTheNearestPenny()
-    {
-        var converter = new CurrencyConverter();
-
-        var result = converter.ConvertCurrency(81, 137.51);
-
-        Assert.Equal(111.39, result);
-    }
-
-    [Fact]
-    public void ConvertCurrency_WithWholeDollarResult_ShouldNotRound()
-    {
-        var converter = new CurrencyConverter();
-
-        var result = converter.ConvertCurrency(50, 2);
-
-        Assert.Equal(1, result);
-    }*/
-
+    // This is actually an integration test (and should ideally be moved into an integration test project for clarity) -
+    // this calls the actual API and gets up to date data. Because of this, the correct value to assert will change
+    // every few minutes, so this cannot be asserted reliably.
+    // With a paid license for the API, a historical route can be called to get the same data every call
     [Fact]
     public async void Convert()
     {
-        CurrencyConverter converter = new CurrencyConverter();
-        var result = await converter.ConvertCurrency(10);
-        Assert.True(true);
+        var converter = new CurrencyConverter();
+        
+        var (_, dollars) = await converter.ConvertCurrency(81);
+
+        Assert.Equal(92.57, dollars);
     }
 }
