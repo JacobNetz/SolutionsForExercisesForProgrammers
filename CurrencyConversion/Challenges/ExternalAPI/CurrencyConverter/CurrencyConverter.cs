@@ -25,7 +25,7 @@ public class CurrencyConverter
     {
         var shiftedResult = originalAmount * 100;
         var ceiling = Math.Ceiling(shiftedResult);
-        return Math.Ceiling(ceiling) != shiftedResult ? ceiling / 100 : originalAmount;
+        return ceiling / 100;
     }
 
     public async Task<(double exchangeRate, double dollars)> ConvertCurrency(double amount)
