@@ -2,7 +2,7 @@ using Xunit;
 
 namespace InterestCalculator.Tests;
 
-public class UnitTest1
+public class CompoundInterestCalculatorTests
 {
     [Fact]
     public void Test1()
