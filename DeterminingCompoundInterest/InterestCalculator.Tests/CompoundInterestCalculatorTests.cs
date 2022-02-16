@@ -4,14 +4,19 @@ namespace InterestCalculator.Tests;
 
 public class CompoundInterestCalculatorTests
 {
-    [Fact]
-    public void CalculateTotalValue_WithValidInputs_ShouldCalculateCorrectTotal()
+    [Theory]
+    [InlineData(1500, 4.3f, 6, 4, 1938.84)]
+    [InlineData(1000, 5, 3, 6, 1161.12)]
+    [InlineData(0, 5, 3, 6, 0)]
+    [InlineData(1000, 0, 3, 6, 1000)]
+    public void CalculateTotalValue_WithValidInputs_ShouldCalculateCorrectTotal(
+        double principal, double interestRate, double years, double compoundsPerYear, double expected)
     {
         var calculator = new CompoundInterestCalculator();
 
-        var total = calculator.CalculateTotalValue(1500, 4.3f, 6, 4);
+        var actual = calculator.CalculateTotalValue(principal, interestRate, years, compoundsPerYear);
 
-        Assert.Equal(1938.84, total);
+        Assert.Equal(expected, actual);
     }
 
     [Theory]
