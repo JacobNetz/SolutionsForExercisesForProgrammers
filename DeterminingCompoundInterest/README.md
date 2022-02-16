@@ -1,0 +1,3 @@
+In order to switch between the original exercise solution and the input validation challenge, you can switch the startup project in Visual Studio by right clicking on the appropriate project and selecting "Set as Startup Project".
+
+The solution for the input validation challenge makes use of the Spectre.Console package to do some more advanced command line parsing and formatted output. You could easily come up with another solution that requires no packages.

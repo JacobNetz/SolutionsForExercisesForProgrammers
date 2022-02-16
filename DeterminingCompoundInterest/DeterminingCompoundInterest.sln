@@ -1,21 +1,20 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30114.105
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeterminingCompoundInterest", "DeterminingCompoundInterest\DeterminingCompoundInterest.csproj", "{1F1000CC-6FBC-4DD0-8F67-D0974E3D45C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeterminingCompoundInterest", "DeterminingCompoundInterest\DeterminingCompoundInterest.csproj", "{1F1000CC-6FBC-4DD0-8F67-D0974E3D45C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterestCalculator", "InterestCalculator\InterestCalculator.csproj", "{F16EACE4-B215-4855-91AC-FBA497108F63}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InterestCalculator", "InterestCalculator\InterestCalculator.csproj", "{F16EACE4-B215-4855-91AC-FBA497108F63}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterestCalculator.Tests", "InterestCalculator.Tests\InterestCalculator.Tests.csproj", "{A5103EF0-7E85-46F7-8A01-C0200F15986F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InterestCalculator.Tests", "InterestCalculator.Tests\InterestCalculator.Tests.csproj", "{A5103EF0-7E85-46F7-8A01-C0200F15986F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InputValidationChallenge", "InputValidationChallenge\InputValidationChallenge.csproj", "{13374B63-4ECC-45D1-AB25-4AD2A594A240}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{1F1000CC-6FBC-4DD0-8F67-D0974E3D45C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -30,5 +29,15 @@ Global
 		{A5103EF0-7E85-46F7-8A01-C0200F15986F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5103EF0-7E85-46F7-8A01-C0200F15986F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5103EF0-7E85-46F7-8A01-C0200F15986F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13374B63-4ECC-45D1-AB25-4AD2A594A240}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13374B63-4ECC-45D1-AB25-4AD2A594A240}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13374B63-4ECC-45D1-AB25-4AD2A594A240}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13374B63-4ECC-45D1-AB25-4AD2A594A240}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {571E696D-7D59-451E-939B-154E23938C52}
 	EndGlobalSection
 EndGlobal
