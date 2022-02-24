@@ -8,31 +8,24 @@ internal class ChallengeSolutionAlternative
 
     public void CalculateInterest()
     {
-        var principal = AnsiConsole.Prompt(
-            new TextPrompt<double>("What is the principal amount?")
-                .PromptStyle("blue")
-                .ValidationErrorMessage(ErrorMessage)
-        );
-        var rate = AnsiConsole.Prompt(
-            new TextPrompt<double>("What is the rate?")
-                .PromptStyle("olive")
-                .ValidationErrorMessage(ErrorMessage)
-        );
-        var years = AnsiConsole.Prompt(
-            new TextPrompt<double>("What is the number of years?")
-                .PromptStyle("fuchsia")
-                .ValidationErrorMessage(ErrorMessage)
-        );
-        var compounds = AnsiConsole.Prompt(
-            new TextPrompt<double>("What is the number of times the interest is compounded per year?")
-                .PromptStyle("teal")
-                .ValidationErrorMessage(ErrorMessage)
-        );
+        var principal = Prompt("What is the principal amount?", "blue");
+        var rate = Prompt("What is the rate?", "olive"); 
+        var years = Prompt("What is the number of years?", "fuchsia"); 
+        var compounds = Prompt("What is the number of times the interest is compounded per year?", "teal"); 
 
         var calculator = new CompoundInterestCalculator();
         var total = calculator.CalculateTotalValue(principal, rate, years, compounds);
 
         AnsiConsole.MarkupLine($"\n[blue]{principal:C}[/] invested at [olive]{rate / 100:P}[/] for [fuchsia]{years}[/] year(s) " +
                                $"compounded [teal]{compounds}[/] times per year is [lime underline]{total:C}[/].");
+    }
+
+    private double Prompt(string question, string color, string errorMessage = ErrorMessage)
+    {
+        return AnsiConsole.Prompt(
+            new TextPrompt<double>(question)
+                .PromptStyle(color)
+                .ValidationErrorMessage(errorMessage)
+        );
     }
 }
