@@ -21,5 +21,9 @@ OPTIONS:
 > InputValidationChallenge.exe 1500 4.3 6 4
 $1,500.00 invested at 4.30% for 6 year(s) compounded 4 times per year is $1,938.84.
 */
-var app = new CommandApp<InterestCommand>();
-return app.Run(args);
+
+/****** Uncomment following two lines to run calculation based off CLI parameters ******/
+//var app = new CommandApp<InterestCommand>();
+//return app.Run(args);
+
+new ChallengeSolutionAlternative().CalculateInterest();
