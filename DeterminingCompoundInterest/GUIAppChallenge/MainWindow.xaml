@@ -1,0 +1,34 @@
+﻿<Window x:Class="GUIAppChallenge.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GUIAppChallenge"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="200" MinHeight="125">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Principal" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" Text="Rate" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" Text="Years" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center" Text="Compounds" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="4" Grid.Column="0" HorizontalAlignment="Center" Text="Total" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" Text="TextBox" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Text="TextBox" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Text="TextBox" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" Text="TextBox" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" Text="" VerticalAlignment="Center"/>
+        </Grid>
+    </Grid>
+</Window>

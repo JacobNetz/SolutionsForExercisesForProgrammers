@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InterestCalculator.Tests", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InputValidationChallenge", "InputValidationChallenge\InputValidationChallenge.csproj", "{13374B63-4ECC-45D1-AB25-4AD2A594A240}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUIAppChallenge", "GUIAppChallenge\GUIAppChallenge.csproj", "{9ABB7946-B8C8-4075-9F88-1A494BB49B90}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{13374B63-4ECC-45D1-AB25-4AD2A594A240}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13374B63-4ECC-45D1-AB25-4AD2A594A240}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13374B63-4ECC-45D1-AB25-4AD2A594A240}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9ABB7946-B8C8-4075-9F88-1A494BB49B90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9ABB7946-B8C8-4075-9F88-1A494BB49B90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9ABB7946-B8C8-4075-9F88-1A494BB49B90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9ABB7946-B8C8-4075-9F88-1A494BB49B90}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
