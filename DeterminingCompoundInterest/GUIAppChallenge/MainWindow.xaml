@@ -6,6 +6,9 @@
         xmlns:local="clr-namespace:GUIAppChallenge"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <Window.DataContext>
+        <local:MainWindowViewModel/>
+    </Window.DataContext>
     <Grid>
         <Grid HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="200" MinHeight="125">
             <Grid.RowDefinitions>
@@ -24,11 +27,11 @@
             <TextBlock Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" Text="Years" VerticalAlignment="Center"/>
             <TextBlock Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center" Text="Compounds" VerticalAlignment="Center"/>
             <TextBlock Grid.Row="4" Grid.Column="0" HorizontalAlignment="Center" Text="Total" VerticalAlignment="Center"/>
-            <TextBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" Text="TextBox" VerticalAlignment="Center"/>
-            <TextBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Text="TextBox" VerticalAlignment="Center"/>
-            <TextBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Text="TextBox" VerticalAlignment="Center"/>
-            <TextBox Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" Text="TextBox" VerticalAlignment="Center"/>
-            <TextBlock Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" Text="" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" Text="{Binding Principal}" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" Text="{Binding InterestRate}" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" Text="{Binding Years}" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="3" Grid.Column="1" HorizontalAlignment="Stretch" Text="{Binding CompoundsPerYear}" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" Text="{Binding Total}" VerticalAlignment="Center"/>
         </Grid>
     </Grid>
 </Window>
