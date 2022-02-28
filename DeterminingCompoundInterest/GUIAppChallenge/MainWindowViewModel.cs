@@ -1,17 +1,16 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using InterestCalculator;
+using System.ComponentModel;
 
 namespace GUIAppChallenge;
-public class MainWindowViewModel: INotifyPropertyChanged
+public class MainWindowViewModel: ObservableObject
 {
     private readonly CompoundInterestCalculator _calculator = new();
-    public event PropertyChangedEventHandler? PropertyChanged;
 
-    protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+    protected override void OnPropertyChanged(PropertyChangedEventArgs e)
     {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        if (propertyName != nameof(Total))
+        base.OnPropertyChanged(e);
+        if (e.PropertyName != nameof(Total))
             Total = _calculator.CalculateTotalValue(Principal, InterestRate, Years, CompoundsPerYear);
     }
 
@@ -19,59 +18,34 @@ public class MainWindowViewModel: INotifyPropertyChanged
     public double Principal
     {
         get => _principal;
-        set
-        {
-            if (value.Equals(_principal)) return;
-            _principal = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(ref _principal, value);
     }
 
     private double _interestRate;
     public double InterestRate
     {
         get => _interestRate;
-        set
-        {
-            if (value.Equals(_interestRate)) return;
-            _interestRate = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(ref _interestRate, value);
     }
 
     private double _years;
     public double Years
     {
         get => _years;
-        set
-        {
-            if (value.Equals(_years)) return;
-            _years = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(ref _years, value);
     }
 
     private double _compoundsPerYear;
     public double CompoundsPerYear
     {
         get => _compoundsPerYear;
-        set
-        {
-            if (value.Equals(_compoundsPerYear)) return;
-            _compoundsPerYear = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(ref _compoundsPerYear, value);
     }
 
     private double _total;
     public double Total
     {
         get => _total;
-        private set
-        {
-            if (value.Equals(_total)) return;
-            _total = value;
-            OnPropertyChanged();
-        }
+        private set => SetProperty(ref _total, value);
     }
 }
