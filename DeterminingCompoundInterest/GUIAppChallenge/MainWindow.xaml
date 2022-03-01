@@ -5,12 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUIAppChallenge"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="400" Width="600" FontSize="32">
     <Window.DataContext>
         <local:MainWindowViewModel/>
     </Window.DataContext>
-    <Grid>
-        <Grid HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="200" MinHeight="125">
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </Window.Resources>
+    <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MinWidth="575" MinHeight="340"
+            BorderThickness="10" BorderBrush="Black" Padding="5">
+        <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -19,19 +30,19 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Principal" VerticalAlignment="Center"/>
-            <TextBlock Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" Text="Rate" VerticalAlignment="Center"/>
-            <TextBlock Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" Text="Years" VerticalAlignment="Center"/>
-            <TextBlock Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center" Text="Compounds" VerticalAlignment="Center"/>
-            <TextBlock Grid.Row="4" Grid.Column="0" HorizontalAlignment="Center" Text="Total" VerticalAlignment="Center"/>
-            <TextBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" Text="{Binding Principal}" VerticalAlignment="Center"/>
-            <TextBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" Text="{Binding InterestRate}" VerticalAlignment="Center"/>
-            <TextBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" Text="{Binding Years}" VerticalAlignment="Center"/>
-            <TextBox Grid.Row="3" Grid.Column="1" HorizontalAlignment="Stretch" Text="{Binding CompoundsPerYear}" VerticalAlignment="Center"/>
-            <TextBlock Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" Text="{Binding Total}" VerticalAlignment="Center"/>
+            <TextBlock Text="Principal"/>
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Rate"/>
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Years"/>
+            <TextBlock Grid.Row="3" Grid.Column="0" Text="Compounds "/>
+            <TextBlock Grid.Row="4" Grid.Column="0" Text="Total" FontWeight="Bold"/>
+            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Principal, StringFormat='{}{0:C}'}"/>
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding InterestRate}"/>
+            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Years}"/>
+            <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding CompoundsPerYear}"/>
+            <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Total, StringFormat='{}{0:C}'}" FontWeight="Bold"/>
         </Grid>
-    </Grid>
+    </Border>
 </Window>
