@@ -24,4 +24,23 @@
     <ProjectReference Include="..\MermaidParser\MermaidParser.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Charts\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Charts\EmptyAndWhitespaceLines.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Charts\IncorrectChartType.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Charts\OriginalExerciseFlowchart.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Charts\Simple.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
