@@ -15,7 +15,7 @@ public class MarkdownFileReaderIntegrationTests
     {
         var mdFileReader = new MarkdownFileReader();
 
-        var lines = mdFileReader.GetFlowchartDefinition(Path.Combine("Charts", filename));
+        var lines = mdFileReader.GetFlowchartDefinitionFromFile(Path.Combine("Charts", filename));
 
         Assert.Equal(numLines, lines.Count());
     }
@@ -25,7 +25,7 @@ public class MarkdownFileReaderIntegrationTests
     {
         var mdFileReader = new MarkdownFileReader();
 
-        var parseFileAction = () => mdFileReader.GetFlowchartDefinition("NOT A VALID FILE NAME.txt");
+        var parseFileAction = () => mdFileReader.GetFlowchartDefinitionFromFile("NOT A VALID FILE NAME.txt");
         
         Assert.Throws<FileNotFoundException>(parseFileAction);
     }
@@ -35,7 +35,7 @@ public class MarkdownFileReaderIntegrationTests
     {
         var mdFileReader = new MarkdownFileReader();
 
-        var parseFileAction = () => mdFileReader.GetFlowchartDefinition("IncorrectChartType.md");
+        var parseFileAction = () => mdFileReader.GetFlowchartDefinitionFromFile("IncorrectChartType.md");
 
         Assert.ThrowsAny<Exception>(parseFileAction);
     }
@@ -45,7 +45,7 @@ public class MarkdownFileReaderIntegrationTests
     {
         var mdFileReader = new MarkdownFileReader();
 
-        var lines = mdFileReader.GetFlowchartDefinition(Path.Combine("Charts", "EmptyAndWhitespaceLines.md"));
+        var lines = mdFileReader.GetFlowchartDefinitionFromFile(Path.Combine("Charts", "EmptyAndWhitespaceLines.md"));
 
         Assert.Equal(4, lines.Count());
     }
@@ -55,7 +55,7 @@ public class MarkdownFileReaderIntegrationTests
     {
         var mdFileReader = new MarkdownFileReader();
 
-        var lines = mdFileReader.GetFlowchartDefinition(Path.Combine("Charts", "EmptyAndWhitespaceLines.md"));
+        var lines = mdFileReader.GetFlowchartDefinitionFromFile(Path.Combine("Charts", "EmptyAndWhitespaceLines.md"));
 
         Assert.StartsWith("Root", lines[0], StringComparison.InvariantCulture);
         Assert.EndsWith("ChildA", lines[0], StringComparison.InvariantCulture);
