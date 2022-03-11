@@ -6,14 +6,14 @@ using Xunit;
 
 namespace MermaidParser.Tests;
 
-public class MarkdownFileReaderIntegrationTests
+public class MarkdownMermaidReaderIntegrationTests
 {
     [Theory]
     [InlineData("Simple.md", 4)]
     [InlineData("OriginalExerciseFlowchart.md", 17)]
     public void GetFlowchartDefinition_WithValidFileAndFilePath_ShouldReturnCorrectNumberOfLines(string filename, int numLines)
     {
-        var mdFileReader = new MarkdownFileReader();
+        var mdFileReader = new MarkdownMermaidReader();
 
         var lines = mdFileReader.GetFlowchartDefinitionFromFile(Path.Combine("Charts", filename));
 
@@ -23,7 +23,7 @@ public class MarkdownFileReaderIntegrationTests
     [Fact]
     public void GetFlowchartDefinition_WithInvalidFilePath_ShouldThrowFileNotFoundException()
     {
-        var mdFileReader = new MarkdownFileReader();
+        var mdFileReader = new MarkdownMermaidReader();
 
         var parseFileAction = () => mdFileReader.GetFlowchartDefinitionFromFile("NOT A VALID FILE NAME.txt");
         
@@ -33,7 +33,7 @@ public class MarkdownFileReaderIntegrationTests
     [Fact]
     public void GetFlowchartDefinition_WithInvalidChartType_ShouldThrowException()
     {
-        var mdFileReader = new MarkdownFileReader();
+        var mdFileReader = new MarkdownMermaidReader();
 
         var parseFileAction = () => mdFileReader.GetFlowchartDefinitionFromFile("IncorrectChartType.md");
 
@@ -43,7 +43,7 @@ public class MarkdownFileReaderIntegrationTests
     [Fact]
     public void GetFlowchartDefinition_WithEmptyAndWhitespaceOnlyLines_ShouldNotReturnThoseLines()
     {
-        var mdFileReader = new MarkdownFileReader();
+        var mdFileReader = new MarkdownMermaidReader();
 
         var lines = mdFileReader.GetFlowchartDefinitionFromFile(Path.Combine("Charts", "EmptyAndWhitespaceLines.md"));
 
@@ -53,7 +53,7 @@ public class MarkdownFileReaderIntegrationTests
     [Fact]
     public void GetFlowchartDefinition_WithEmptyAndWhitespaceLines_ShouldTrimWhitespaceFromLines()
     {
-        var mdFileReader = new MarkdownFileReader();
+        var mdFileReader = new MarkdownMermaidReader();
 
         var lines = mdFileReader.GetFlowchartDefinitionFromFile(Path.Combine("Charts", "EmptyAndWhitespaceLines.md"));
 

@@ -1,6 +1,6 @@
 ﻿namespace MermaidParser;
 
-public class MarkdownFileReader
+public class MarkdownMermaidReader
 {
     public IList<string> GetFlowchartDefinitionFromFile(string filePath)
     {
@@ -17,7 +17,7 @@ public class MarkdownFileReader
     private IList<string> GetFlowchartDefinition(TextReader reader)
     {
         // Consume lines until it finds the start of the mermaid chart
-        while (!reader.ReadLine()?.Contains("```mermaid", StringComparison.InvariantCultureIgnoreCase) ?? true) { }
+        while (!reader.ReadLine()?.Contains("```mermaid", StringComparison.InvariantCultureIgnoreCase) ?? false) { }
         var nextLine = reader.ReadLine()?.Trim();
         if (nextLine == null || !nextLine.Contains("flowchart", StringComparison.InvariantCultureIgnoreCase))
             throw new Exception("Could not find 'flowchart' declaration");
