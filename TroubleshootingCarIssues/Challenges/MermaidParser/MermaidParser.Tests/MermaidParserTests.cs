@@ -9,15 +9,16 @@ public class MermaidParserTests
         var mermaidDefinition = @"
         ```mermaid
         flowchart TD;
-            Root[Yes or no?]-->|Yes|ChildA
-            Root-->|No|ChildB
-            ChildA[Yes indeed]
-            ChildB[No way]
+            Root-->ChildA
+            Root-->ChildB
         ```";
         var parser = new MermaidParser(new MarkdownMermaidReader().GetFlowchartDefinition(mermaidDefinition));
 
-        parser.Parse();
+        var graph = parser.Parse();
 
-        Assert.True(false);
+        Assert.Equal("Root", graph.Root.Name);
+        Assert.Equal(2, graph.Root.Nodes.Count);
+        Assert.Equal("ChildA", graph.Root.Nodes[0].Name);
+        Assert.Equal("ChildB", graph.Root.Nodes[1].Name);
     }
 }

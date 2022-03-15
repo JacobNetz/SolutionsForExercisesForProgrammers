@@ -6,4 +6,7 @@ public readonly record struct Node(
     string Name,
     string Text,
     string ParentEdgeText,
-    IList<Node> Nodes);
+    IList<Node> Nodes)
+{
+    public bool IsTerminalNode => !Nodes.Any();
+}
