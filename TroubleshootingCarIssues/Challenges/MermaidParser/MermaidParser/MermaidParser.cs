@@ -22,23 +22,23 @@ public class MermaidParser
         var nodes = new List<Node>();
         foreach (var line in _lines)
         {
-            var regex = new Regex(@"(?<source>\w+)-->(?<destination>\w+)", 
+            var regex = new Regex(@"(?<source>\w+)\s*-->\s*(?<destination>\w+)", 
                 RegexOptions.Singleline | RegexOptions.ExplicitCapture);
             var match = regex.Match(line);
             if(match.Success)
             {
                 var destination = new Node(
-                    Name: match.Groups["destination"].Value,
+                    Id: match.Groups["destination"].Value,
                     Text: string.Empty,
                     ParentEdgeText: string.Empty,
                     Nodes: new List<Node>());
                 nodes.Add(destination);
-                var existingNode = nodes.FirstOrDefault(node => node.Name == match.Groups["source"].Value);
+                var existingNode = nodes.FirstOrDefault(node => node.Id == match.Groups["source"].Value);
                 if (existingNode != default)
                     existingNode.Nodes.Add(destination);
                 else
                     nodes.Add(new Node(
-                        Name: match.Groups["source"].Value,
+                        Id: match.Groups["source"].Value,
                         Text: string.Empty,
                         ParentEdgeText: string.Empty,
                         Nodes: new List<Node> { destination }));
@@ -48,7 +48,7 @@ public class MermaidParser
         var rootNode = nodes.FirstOrDefault(outerNode => 
             !nodes.Any(innerNode => 
                 innerNode.Nodes.Any(innerChildNode => 
-                    innerChildNode.Name == outerNode.Name)));
+                    innerChildNode.Id == outerNode.Id)));
         var graph = new Graph(rootNode);
         return graph;
     }
