@@ -46,7 +46,7 @@ public class MermaidParserTests
     {
         var graph = ParseTestHelper($"Root[{nodeText}]-->ChildA");
 
-        Assert.Contains("Some text in square brackets", graph.Root.Text);
+        Assert.Contains(nodeText, graph.Root.Text);
         Assert.Equal("Root", graph.Root.Id);
     }
 

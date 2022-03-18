@@ -22,7 +22,7 @@ public class MermaidParser
         var nodes = new List<Node>();
         foreach (var line in _lines)
         {
-            var regex = new Regex(@"(?<source>\w+)\s*-->\s*(?<destination>\w+)", 
+            var regex = new Regex(@"(?<source>\w+)\[?(?<sourceText>[\w\s]+)*\]?\s*-->\s*(?<destination>\w+)", 
                 RegexOptions.Singleline | RegexOptions.ExplicitCapture);
             var match = regex.Match(line);
             if(match.Success)
@@ -39,7 +39,7 @@ public class MermaidParser
                 else
                     nodes.Add(new Node(
                         Id: match.Groups["source"].Value,
-                        Text: string.Empty,
+                        Text: match.Groups["sourceText"].Value,
                         ParentEdgeText: string.Empty,
                         Nodes: new List<Node> { destination }));
             }
