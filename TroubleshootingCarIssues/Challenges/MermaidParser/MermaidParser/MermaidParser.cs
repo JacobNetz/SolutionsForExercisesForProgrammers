@@ -22,14 +22,18 @@ public class MermaidParser
         var nodes = new List<Node>();
         foreach (var line in _lines)
         {
-            var regex = new Regex(@"(?<source>\w+)\[?(?<sourceText>[\w\s]+)*\]?\s*-->\s*(?<destination>\w+)", 
-                RegexOptions.Singleline | RegexOptions.ExplicitCapture);
+            // Whitespace/newlines added to make Regex expression easier to read - it can be removed with no effect
+            var regex = new Regex(@"
+            (?<source>     \w+) \[?(?<sourceText>     [\w\s]+)*\]?
+            \s*-->\s*
+            (?<destination>\w+) \[?(?<destinationText>[\w\s]+)*\]?",
+                RegexOptions.Singleline | RegexOptions.ExplicitCapture | RegexOptions.IgnorePatternWhitespace);
             var match = regex.Match(line);
             if(match.Success)
             {
                 var destination = new Node(
                     Id: match.Groups["destination"].Value,
-                    Text: string.Empty,
+                    Text: match.Groups["destinationText"].Value,
                     ParentEdgeText: string.Empty,
                     Nodes: new List<Node>());
                 nodes.Add(destination);

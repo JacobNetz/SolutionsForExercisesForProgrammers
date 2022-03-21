@@ -27,7 +27,7 @@ public class MermaidParserTests
     }
 
     [Fact]
-    public void Parse_WithSimple3NodeBinaryTree_ShouldReturnCorrectModel()
+    public void Parse_WithSimple3NodeBinaryTree_ShouldReturnCorrectGraph()
     {
         var graph = ParseTestHelper("Root-->ChildA\nRoot-->ChildB");
 
@@ -46,19 +46,34 @@ public class MermaidParserTests
     {
         var graph = ParseTestHelper($"Root[{nodeText}]-->ChildA");
 
-        Assert.Contains(nodeText, graph.Root.Text);
+        Assert.Equal(nodeText, graph.Root.Text);
         Assert.Equal("Root", graph.Root.Id);
     }
 
-    [Fact]
-    public void Parse_WithTwoNodesWithText_ShouldCaptureNodeTextAndIdForBothNodes()
+    [Theory]
+    [InlineData("SingleA", "SingleB")]
+    [InlineData("two wordsA", "two wordsB")]
+    [InlineData("RaNDom cap TEST A", "RaNDom cap TEST B")]
+    public void Parse_WithTwoNodesWithText_ShouldCaptureNodeTextAndIdForBothNodes(string childAText, string childBText)
     {
-        var graph = ParseTestHelper("Root-->ChildA[ChildA text]\nRoot-->ChildB[ChildB Text]");
+        var graph = ParseTestHelper($"Root-->ChildA[{childAText}]\nRoot-->ChildB[{childBText}]");
 
         Assert.Equal(2, graph.Root.Nodes.Count);
         Assert.Equal("ChildA", graph.Root.Nodes[0].Id);
-        Assert.Equal("ChildA text", graph.Root.Nodes[0].Text);
+        Assert.Equal(childAText, graph.Root.Nodes[0].Text);
         Assert.Equal("ChildB", graph.Root.Nodes[1].Id);
-        Assert.Equal("ChildB Text", graph.Root.Nodes[1].Text);
+        Assert.Equal(childBText, graph.Root.Nodes[1].Text);
+    }
+
+    [Theory]
+    [InlineData("SrcText", "DestText")]
+    [InlineData("Src Text", "Dest Text")]
+    [InlineData("RaNDom cap TEST A", "RaNDom cap TEST B")]
+    public void Parse_WithTextOnSourceAndDestination_ShouldCaptureBothTexts(string sourceText, string destinationText)
+    {
+        var graph = ParseTestHelper($"Source[{sourceText}]-->Destination[{destinationText}]");
+
+        Assert.Equal(sourceText, graph.Root.Text);
+        Assert.Equal(destinationText, graph.Root.Nodes[0].Text);
     }
 }
