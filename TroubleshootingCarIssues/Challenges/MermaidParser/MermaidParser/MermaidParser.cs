@@ -25,7 +25,7 @@ public class MermaidParser
             // Whitespace/newlines added to make Regex expression easier to read - it can be removed with no effect
             var regex = new Regex(@"
             (?<source>     \w+) \[?(?<sourceText>     [\w\s]+)*\]?
-            \s*-->\s*
+            \s*-->\s*(\|(?<edgeText>.*)\|)?
             (?<destination>\w+) \[?(?<destinationText>[\w\s]+)*\]?",
                 RegexOptions.Singleline | RegexOptions.ExplicitCapture | RegexOptions.IgnorePatternWhitespace);
             var match = regex.Match(line);
@@ -34,7 +34,7 @@ public class MermaidParser
                 var destination = new Node(
                     Id: match.Groups["destination"].Value,
                     Text: match.Groups["destinationText"].Value,
-                    ParentEdgeText: string.Empty,
+                    ParentEdgeText: match.Groups["edgeText"].Value,
                     Nodes: new List<Node>());
                 nodes.Add(destination);
                 var existingNode = nodes.FirstOrDefault(node => node.Id == match.Groups["source"].Value);
@@ -44,7 +44,7 @@ public class MermaidParser
                     nodes.Add(new Node(
                         Id: match.Groups["source"].Value,
                         Text: match.Groups["sourceText"].Value,
-                        ParentEdgeText: string.Empty,
+                        ParentEdgeText: match.Groups["edgeText"].Value,
                         Nodes: new List<Node> { destination }));
             }
         }

@@ -76,4 +76,19 @@ public class MermaidParserTests
         Assert.Equal(sourceText, graph.Root.Text);
         Assert.Equal(destinationText, graph.Root.Nodes[0].Text);
     }
+
+    [Theory]
+    [InlineData("A")]
+    [InlineData("Yes")]
+    [InlineData("Two Words")]
+    [InlineData("Lots of Words as the Edge Text")]
+    [InlineData("Num8ers With 34345 Letters 45.5")]
+    [InlineData("873")]
+    [InlineData("873 54 234 56")]
+    public void Parse_WithLeftEdgeText_ShouldCaptureEdgeText(string edgeText)
+    {
+        var graph = ParseTestHelper($"Source-->|{edgeText}|Destination");
+
+        Assert.Equal(edgeText, graph.Root.Nodes[0].ParentEdgeText);
+    }
 }
