@@ -91,4 +91,17 @@ public class MermaidParserTests
 
         Assert.Equal(edgeText, graph.Root.Nodes[0].ParentEdgeText);
     }
+
+    [Theory]
+    [InlineData("A", "B")]
+    [InlineData("Two words", "Other Words")]
+    [InlineData("3.14", "123.45")]
+    [InlineData("One", "Two Words")]
+    public void Parse_WithTwoEdgesWithText_ShouldCaptureEdgeTexts(string leftEdgeText, string rightEdgeText)
+    {
+        var graph = ParseTestHelper($"Root-->|{leftEdgeText}|ChildA\nRoot-->|{rightEdgeText}|ChildB");
+
+        Assert.Equal(leftEdgeText, graph.Root.Nodes[0].ParentEdgeText);
+        Assert.Equal(rightEdgeText, graph.Root.Nodes[1].ParentEdgeText);
+    }
 }
