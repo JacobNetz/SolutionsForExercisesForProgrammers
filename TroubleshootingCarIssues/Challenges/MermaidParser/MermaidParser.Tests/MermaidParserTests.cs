@@ -42,6 +42,9 @@ public class MermaidParserTests
     [InlineData("single")]
     [InlineData("two words")]
     [InlineData("RaNDom cap TEST")]
+    [InlineData("3.14")]
+    [InlineData("3.14 5 67.4")]
+    [InlineData("Words with num3ers i3.1n them")]
     public void Parse_WithOneNodeWithText_ShouldCaptureNodeTextAndId(string nodeText)
     {
         var graph = ParseTestHelper($"Root[{nodeText}]-->ChildA");
@@ -54,6 +57,7 @@ public class MermaidParserTests
     [InlineData("SingleA", "SingleB")]
     [InlineData("two wordsA", "two wordsB")]
     [InlineData("RaNDom cap TEST A", "RaNDom cap TEST B")]
+    [InlineData("3.14", "123.45")]
     public void Parse_WithTwoNodesWithText_ShouldCaptureNodeTextAndIdForBothNodes(string childAText, string childBText)
     {
         var graph = ParseTestHelper($"Root-->ChildA[{childAText}]\nRoot-->ChildB[{childBText}]");
@@ -69,6 +73,7 @@ public class MermaidParserTests
     [InlineData("SrcText", "DestText")]
     [InlineData("Src Text", "Dest Text")]
     [InlineData("RaNDom cap TEST A", "RaNDom cap TEST B")]
+    [InlineData("3.14", "123.45")]
     public void Parse_WithTextOnSourceAndDestination_ShouldCaptureBothTexts(string sourceText, string destinationText)
     {
         var graph = ParseTestHelper($"Source[{sourceText}]-->Destination[{destinationText}]");
@@ -103,5 +108,20 @@ public class MermaidParserTests
 
         Assert.Equal(leftEdgeText, graph.Root.Nodes[0].ParentEdgeText);
         Assert.Equal(rightEdgeText, graph.Root.Nodes[1].ParentEdgeText);
+    }
+
+    [Theory]
+    [InlineData("single", "A", "Text with num3ers")]
+    [InlineData("two words", "TWO WORDS", "2345.567")]
+    [InlineData("RaNDom cap TEST", "3.141", "45")]
+    public void Parse_WithTextAndEdgeWithText_ShouldCaptureTextAndEdgeText(string sourceText, string destinationText, string edgeText)
+    {
+        var graph = ParseTestHelper($"Source[{sourceText}]-->|{edgeText}|Destination[{destinationText}]");
+
+        Assert.Equal("Source", graph.Root.Id);
+        Assert.Equal(sourceText, graph.Root.Text);
+        Assert.Equal(edgeText, graph.Root.Nodes[0].ParentEdgeText);
+        Assert.Equal("Destination", graph.Root.Nodes[0].Id);
+        Assert.Equal(destinationText, graph.Root.Nodes[0].Text);
     }
 }

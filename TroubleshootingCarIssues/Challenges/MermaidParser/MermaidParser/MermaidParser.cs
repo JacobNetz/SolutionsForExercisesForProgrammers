@@ -24,9 +24,9 @@ public class MermaidParser
         {
             // Whitespace/newlines added to make Regex expression easier to read - it can be removed with no effect
             var regex = new Regex(@"
-            (?<source>     \w+) \[?(?<sourceText>     [\w\s]+)*\]?
-            \s*-->\s*(\|(?<edgeText>.*)\|)?
-            (?<destination>\w+) \[?(?<destinationText>[\w\s]+)*\]?",
+            (?<source>     \w+) (\[(?<sourceText>     .+)\])?
+            \s*-->\s*(\|(?<edgeText>.+)\|)?
+            (?<destination>\w+) (\[(?<destinationText>.+)\])?",
                 RegexOptions.Singleline | RegexOptions.ExplicitCapture | RegexOptions.IgnorePatternWhitespace);
             var match = regex.Match(line);
             if(match.Success)
