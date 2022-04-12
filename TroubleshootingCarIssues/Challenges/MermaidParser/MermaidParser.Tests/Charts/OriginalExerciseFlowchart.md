@@ -1,7 +1,7 @@
 # Troubleshooting flow chart
 ```mermaid
 flowchart TD;
-    A(Is the car \n silent when you \n  turn the key?)-->|Yes|B
+    A[Is the car \n silent when you \n  turn the key?]-->|Yes|B
     B[Are the \n battery terminals \n corroded?]-->|Yes|D
     B-->|No|E
     D[Clean terminals \n and try \n starting again.]

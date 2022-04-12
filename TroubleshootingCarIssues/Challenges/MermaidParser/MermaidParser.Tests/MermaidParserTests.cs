@@ -124,4 +124,18 @@ public class MermaidParserTests
         Assert.Equal("Destination", graph.Root.Nodes[0].Id);
         Assert.Equal(destinationText, graph.Root.Nodes[0].Text);
     }
+
+    [Theory]
+    [InlineData("A", "description")]
+    [InlineData("ID", "Two words")]
+    [InlineData("42", "Words with num3ers")]
+    [InlineData("12345", "67890")]
+    [InlineData("12", "6.9")]
+    public void Parse_WithSingleNode_ShouldCaptureNodeWithText(string id, string text)
+    {
+        var graph = ParseTestHelper($"{id}[{text}]");
+
+        Assert.Equal(id, graph.Root.Id);
+        Assert.Equal(text, graph.Root.Text);
+    }
 }

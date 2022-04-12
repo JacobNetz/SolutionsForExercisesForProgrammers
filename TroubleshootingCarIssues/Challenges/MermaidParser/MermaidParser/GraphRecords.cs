@@ -2,7 +2,7 @@
 
 public readonly record struct Graph(Node Root);
 
-public readonly record struct Node(
+public record struct Node(
     string Id,
     string Text,
     string ParentEdgeText,

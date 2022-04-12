@@ -23,12 +23,12 @@ public class MermaidParser
         foreach (var line in _lines)
         {
             // Whitespace/newlines added to make Regex expression easier to read - it can be removed with no effect
-            var regex = new Regex(@"
+            var sourceToDestinationRegex = new Regex(@"
             (?<source>     \w+) (\[(?<sourceText>     .+)\])?
             \s*-->\s*(\|(?<edgeText>.+)\|)?
             (?<destination>\w+) (\[(?<destinationText>.+)\])?",
                 RegexOptions.Singleline | RegexOptions.ExplicitCapture | RegexOptions.IgnorePatternWhitespace);
-            var match = regex.Match(line);
+            var match = sourceToDestinationRegex.Match(line);
             if(match.Success)
             {
                 var destination = new Node(
@@ -47,6 +47,24 @@ public class MermaidParser
                         ParentEdgeText: match.Groups["edgeText"].Value,
                         Nodes: new List<Node> { destination }));
             }
+            else
+            {
+                var singleNodeRegex = new Regex(@"(?<node>\w+)(\[(?<nodeText>.+)\])",
+                    RegexOptions.Singleline | RegexOptions.ExplicitCapture | RegexOptions.IgnorePatternWhitespace);
+                var nodeMatch = singleNodeRegex.Match(line);
+                if (!nodeMatch.Success) continue;
+
+                var existingNode = nodes.FirstOrDefault(node => node.Id == nodeMatch.Groups["node"].Value);
+                if (existingNode != default)
+                    existingNode.Text = nodeMatch.Groups["nodeText"].Value;
+                else
+                    nodes.Add(new Node(
+                        Id: nodeMatch.Groups["node"].Value,
+                        Text: nodeMatch.Groups["nodeText"].Value,
+                        ParentEdgeText: string.Empty,
+                        Nodes: new List<Node>()));
+            }
+            
         }
         
         var rootNode = nodes.FirstOrDefault(outerNode => 
