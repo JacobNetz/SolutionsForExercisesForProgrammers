@@ -138,4 +138,35 @@ public class MermaidParserTests
         Assert.Equal(id, graph.Root.Id);
         Assert.Equal(text, graph.Root.Text);
     }
+
+
+    [Theory]
+    [InlineData("text with four words")]
+    [InlineData("single")]
+    [InlineData("two words")]
+    [InlineData("RaNDom cap TEST")]
+    [InlineData("3.14")]
+    [InlineData("3.14 5 67.4")]
+    [InlineData("Words with num3ers i3.1n them")]
+    public void Parse_WithSingleChildNodeComingAfterNodeAlreadyUsed_ShouldUpdateNodeText(string text)
+    {
+        var graph = ParseTestHelper($"Root-->Child\nChild[{text}]");
+
+        Assert.Equal(text, graph.Root.Nodes[0].Text);
+    }
+
+    [Theory]
+    [InlineData("text with four words")]
+    [InlineData("single")]
+    [InlineData("two words")]
+    [InlineData("RaNDom cap TEST")]
+    [InlineData("3.14")]
+    [InlineData("3.14 5 67.4")]
+    [InlineData("Words with num3ers i3.1n them")]
+    public void Parse_WithSingleChildNodeComingAfterNodeWithDescriptionAlreadyUsed_ShouldUpdateNodeText(string text)
+    {
+        var graph = ParseTestHelper($"Root-->Child[Old text]\nChild[{text}]");
+
+        Assert.Equal(text, graph.Root.Nodes[0].Text);
+    }
 }
